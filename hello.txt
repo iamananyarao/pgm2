@@ -1,1 +1,30 @@
-hello
+insert into Book_lending values('a1234','12','234yt','12-05-24','22-05-24');
+insert into Book_lending values('b5678','13','876vsd','13-05-24','23-05-24');
+insert into Book_lending values('c9101','14','23csgt','14-05-24','24-05-24');
+insert into Book_lending values('c9101','12','23csgt','15-05-24','25-05-24');
+insert into Book_lending values('b5678','13','23csgt','16-05-24','27-05-24');
+select Bl.CARD_NO,c.CARD_NAME
+FROM Book_lending Bl,CARD c
+where Bl.DATE_OUT BETWEEN '13-05-24' AND '23-05-24'
+AND Bl.CARD_NO=c.CARD_NO
+GROUP BY Bl.CARD_NO, c.CARD_NAME
+HAVING COUNT(*)>=2;
+
+
+select b.BOOK_ID,b.title,b.PUBLISHER_NAME,a.AUTHOR_NAME,c.BRANCH_ID,c.BOOK_COPIES
+from book b,BOOK_AUTHOR a,BOOK_COPIES c
+where b.BOOK_ID=a.BOOK_ID and a.BOOK_ID=c.BOOK_ID;
+
+
+select b.BOOK_ID,b.title,b.PUBLISHER_NAME,a.AUTHOR_NAME,c.BRANCH_ID,c.NO_OF_COPIES
+from book b,BOOK_AUTHOR a,BOOK_COPIES c
+where b.BOOK_ID=a.BOOK_ID and a.BOOK_ID=c.BOOK_ID;
+
+
+create view book_in_lib as
+select b.BOOK_ID,b.title,c.BRANCH_ID,c.NO_OF_COPIES
+from book b,BOOK_COPIES c
+where b.BOOK_ID=c.BOOK_ID=12;
+
+delete from book where BOOK_ID='12';
+
